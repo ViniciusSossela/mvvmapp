@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.vsossella.mvvmapp.ui.team.viewmodel.TeamViewModel" />
+    </data>
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        </android.support.design.widget.AppBarLayout>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin"
+            android:gravity="center"
+            android:textSize="@dimen/default_bigger_text_size"
+            android:textStyle="bold"
+            android:text="@string/brasilian_teams"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_margin="@dimen/default_margin"
+                android:layout_weight="1"
+                android:hint="City"
+                android:text="@={viewModel.cityFilter}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Filter"
+                android:drawableLeft="@drawable/ic_filter_list_white_24dp"
+                android:drawablePadding="@dimen/default_padding"
+                android:layout_margin="@dimen/default_margin"
+                android:onClick="@{viewModel::onFilterTouched}"/>
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_teams"
+            app:teams="@{viewModel.teams}"
+            android:layout_margin="@dimen/default_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+</layout>
+
